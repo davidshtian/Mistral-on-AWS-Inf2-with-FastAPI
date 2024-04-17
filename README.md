@@ -1,0 +1,1 @@
+# Mistral-on-AWS-Inf2-with-FastAPI
