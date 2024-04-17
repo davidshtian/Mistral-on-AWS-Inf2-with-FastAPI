@@ -1,5 +1,9 @@
 # Mistral on AWS Inf2 with FastAPI
 Use FastAPI to quickly host serving of Mistral model on AWS Inferentia2 instance Inf2 🚀
+Support Multimodal input type (input_embeds) 🖼️
+
+![image](https://github.com/davidshtian/Mistral-on-AWS-Inf2-with-FastAPI/assets/14228056/94f8aa15-6851-41d5-b89e-2b8699949fef)
+
 
 ## Environment Setup
 Follow the instructions in Neuron docs [Pytorch Neuron Setup](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-setup.html) for basic environment setup. 
