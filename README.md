@@ -16,16 +16,19 @@ pip install -r requirements.txt
 
 ## Run the App
 ```
+cd app
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Send the Request
 Test via the input_ids (normal prompt) version:
 ```
+cd client
 python client.py
 ```
 
 Test via the input_embeds (common multimodal input, skip embedding layer) version:
 ```
+cd client
 python embeds_client.py
 ```
