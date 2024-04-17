@@ -14,12 +14,12 @@ Go to the virtual env and install the extra packages.
 pip install -r requirements.txt
 ```
 
-## Run the app
+## Run the App
 ```
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-## Send the request
+## Send the Request
 Test via the input_ids (normal prompt) version:
 ```
 python client.py
