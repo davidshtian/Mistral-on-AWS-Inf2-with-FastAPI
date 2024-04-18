@@ -1,3 +1,0 @@
-uvicorn[standard]
-fastapi
-git+https://github.com/davidshtian/transformers-neuronx.git
