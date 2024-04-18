@@ -34,7 +34,7 @@ python embeds_client.py
 ```
 
 ## Container
-You could build container image using the DOckerfile, or using the pre-build image:
+You could build container image using the Dockerfile, or using the pre-build image:
 ```
 docker run --rm --name mistral -d -p 8000:8000 --device=/dev/neuron0 public.ecr.aws/shtian/fastapi-mistral
 ```
