@@ -32,3 +32,9 @@ Test via the input_embeds (common multimodal input, skip embedding layer) versio
 cd client
 python embeds_client.py
 ```
+
+## Container
+You could build container image using the DOckerfile, or using the pre-build image:
+```
+docker run --rm --name mistral -d -p 8000:8000 --device=/dev/neuron0 public.ecr.aws/shtian/fastapi-mistral
+```
