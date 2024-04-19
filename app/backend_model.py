@@ -13,10 +13,10 @@ class MistralModel:
     def __init__(self):
         self.neuron_config = NeuronConfig(group_query_attention=GQA.SHARD_OVER_HEADS)
         self.model_name = 'mistralai/Mistral-7B-Instruct-v0.2'
-        self.amp: Literal['bf16', 'fp32'] = 'bf16'
+        self.amp: Literal['bf16', 'fp16', 'fp32'] = 'fp16'
         self.batch_size = 1
-        self.tp_degree = 2
-        self.n_positions = 2048
+        self.tp_degree = 24
+        self.n_positions = 4096
 
         self.model = self._load_model()
         self.tokenizer = AutoTokenizer.from_pretrained('mistralai/Mistral-7B-Instruct-v0.2')
