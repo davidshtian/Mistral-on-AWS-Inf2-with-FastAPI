@@ -11,12 +11,12 @@ Follow the instructions in Neuron docs [Pytorch Neuron Setup](https://awsdocs-ne
 ## Install Packages
 Go to the virtual env and install the extra packages.
 ```
+cd app
 pip install -r requirements.txt
 ```
 
 ## Run the App
 ```
-cd app
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
