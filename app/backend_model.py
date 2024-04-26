@@ -1,3 +1,4 @@
+import math
 import logging
 from typing import Union, List, Optional, Dict, Any, Literal
 import torch
@@ -5,6 +6,14 @@ import torch.nn.functional as F
 from transformers import AutoTokenizer
 from transformers_neuronx import MistralForSampling, GQA, NeuronConfig
 
+def padding_ceiling(n):
+    if n <= 0:
+        return 1
+    elif n & (n - 1) == 0:  # Check if n is already a power of 2
+        return n
+    else:
+        return 2 ** math.ceil(math.log2(n))
+        
 class MistralModel:
     """
     A class for generating text using the Mistral language model.
@@ -105,10 +114,13 @@ class MistralModel:
         """
         input_embeds_tensor = torch.tensor(input_embeddings)
         input_embeds_length = input_embeds_tensor.shape[1]
-        power_of_length = 64
-        padding_size = ((input_embeds_length - 1) // 64 + 1) * power_of_length
-        padding_gap = padding_size - input_embeds_length
-        padded_input_embeds = F.pad(input_embeds_tensor, (0, 0, padding_gap, 0), value=self.tokenizer.pad_token_id)
+        padding_size = padding_ceiling(input_embeds_length)
+        if padding_size == self.n_positions:
+            padding_size = input_embeds_length
+            padded_input_embeds = input_embeds_tensor
+        else:
+            padding_gap = padding_size - input_embeds_length
+            padded_input_embeds = F.pad(input_embeds_tensor, (0, 0, padding_gap, 0), value=self.tokenizer.pad_token_id)
 
         with torch.inference_mode():
             generated_sequence = self.model.sample(padded_input_embeds, sequence_length=min(self.n_positions, padding_size+max_new_tokens), start_ids=None)
